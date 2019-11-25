@@ -13,6 +13,7 @@
 		7B8EA38C238C582B004499F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8EA38A238C582B004499F1 /* Main.storyboard */; };
 		7B8EA38E238C582C004499F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B8EA38D238C582C004499F1 /* Assets.xcassets */; };
 		7B8EA391238C582C004499F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B8EA38F238C582C004499F1 /* LaunchScreen.storyboard */; };
+		7B8EA399238C6357004499F1 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8EA398238C6357004499F1 /* ScannerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		7B8EA38D238C582C004499F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B8EA390238C582C004499F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7B8EA392238C582C004499F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B8EA398238C6357004499F1 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				7B8EA384238C582B004499F1 /* AppDelegate.swift */,
 				7B8EA386238C582B004499F1 /* SceneDelegate.swift */,
 				7B8EA388238C582B004499F1 /* ViewController.swift */,
+				7B8EA398238C6357004499F1 /* ScannerViewController.swift */,
 				7B8EA38A238C582B004499F1 /* Main.storyboard */,
 				7B8EA38D238C582C004499F1 /* Assets.xcassets */,
 				7B8EA38F238C582C004499F1 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				7B8EA389238C582B004499F1 /* ViewController.swift in Sources */,
 				7B8EA385238C582B004499F1 /* AppDelegate.swift in Sources */,
 				7B8EA387238C582B004499F1 /* SceneDelegate.swift in Sources */,
+				7B8EA399238C6357004499F1 /* ScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +298,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nugumanov.Scanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -312,7 +316,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nugumanov.Scanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
