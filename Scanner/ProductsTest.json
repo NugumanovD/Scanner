@@ -1,0 +1,181 @@
+[
+    {
+        "groceryID": 1,
+        "vegetables": [
+            {
+                "vegetableID": 1,
+                "name": "Apple",
+                "image": "apple-1",
+                "code": ""
+            },
+            {
+                "vegetableID": 2,
+                "name": "Asparagus",
+                "image": "asparagus",
+                "code": ""
+            },
+            {
+                "vegetableID": 3,
+                "name": "Aubergine",
+                "image": "aubergine",
+                "code": ""
+            },
+            {
+                "vegetableID": 4,
+                "name": "Avocado",
+                "image": "avocado",
+                "code": ""
+            },
+            {
+                "vegetableID": 5,
+                "name": "Bacon",
+                "image": "bacon",
+                "code": ""
+            },
+            {
+                "vegetableID": 6,
+                "name": "Banana",
+                "image": "banana",
+                "code": ""
+            },
+            {
+                "vegetableID": 7,
+                "name": "Beans",
+                "image": "beans",
+                "code": ""
+            },
+            {
+                "vegetableID": 8,
+                "name": "Biscuit",
+                "image": "biscuit",
+                "code": ""
+            },
+            {
+                "vegetableID": 9,
+                "name": "bread",
+                "image": "bread",
+                "code": ""
+            },
+            {
+                "vegetableID": 10,
+                "name": "broccoli",
+                "image": "broccoli",
+                "code": ""
+            },
+            {
+                "vegetableID": 11,
+                "name": "butter",
+                "image": "butter",
+                "code": ""
+            },
+            {
+                "vegetableID": 12,
+                "name": "cabbage",
+                "image": "cabbage",
+                "code": ""
+            },
+            {
+                "vegetableID": 13,
+                "name": "cake",
+                "image": "cake",
+                "code": ""
+            },
+            {
+                "vegetableID": 14,
+                "name": "candy",
+                "image": "candy",
+                "code": ""
+            },
+            {
+                "vegetableID": 15,
+                "name": "carrot",
+                "image": "carrot",
+                "code": ""
+            },
+            {
+                "vegetableID": 16,
+                "name": "cheese",
+                "image": "cheese",
+                "code": ""
+            },
+            {
+                "vegetableID": 17,
+                "name": "cherries",
+                "image": "cherries",
+                "code": ""
+            },
+            {
+                "vegetableID": 18,
+                "name": "chili",
+                "image": "chili",
+                "code": ""
+            },
+            {
+                "vegetableID": 19,
+                "name": "chips",
+                "image": "chips",
+                "code": ""
+            },
+            {
+                "vegetableID": 20,
+                "name": "chives",
+                "image": "chives",
+                "code": ""
+            },
+            {
+                "vegetableID": 21,
+                "name": "chocolate",
+                "image": "chocolate",
+                "code": ""
+            },
+            {
+                "vegetableID": 22,
+                "name": "coffee",
+                "image": "coffee-4",
+                "code": ""
+            },
+            {
+                "vegetableID": 23,
+                "name": "corn",
+                "image": "corn",
+                "code": ""
+            },
+            {
+                "vegetableID": 24,
+                "name": "cucumber",
+                "image": "cucumber",
+                "code": ""
+            },
+            {
+                "vegetableID": 25,
+                "name": "cupcake",
+                "image": "cupcake",
+                "code": ""
+            },
+            {
+                "vegetableID": 26,
+                "name": "doughnut",
+                "image": "doughnut-1",
+                "code": ""
+            },
+            {
+                "vegetableID": 27,
+                "name": "egg",
+                "image": "egg",
+                "code": ""
+            },
+            {
+                "vegetableID": 28,
+                "name": "fish",
+                "image": "fish",
+                "code": ""
+            },
+            {
+                "vegetableID": 29,
+                "name": "ice-cream",
+                "image": "ice-cream-1",
+                "code": ""
+            }
+        ]
+    }
+]

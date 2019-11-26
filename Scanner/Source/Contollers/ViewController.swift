@@ -11,9 +11,14 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
+    let netWork = NetworkManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        netWork.request { (grocery, error) in
+            print(grocery)
+        }
     }
     
 }
