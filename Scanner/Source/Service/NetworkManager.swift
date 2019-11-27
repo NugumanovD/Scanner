@@ -8,12 +8,9 @@
 
 import Foundation
 
-protocol DataFetching {
-    typealias CompletionHandler = ([GroceryElement]?, Error?) -> Void
-    func request(completion: @escaping CompletionHandler)
-}
+typealias CompletionHandler = ([GroceryElement]?, Error?) -> Void
 
-class NetworkManager: DataFetching {
+class NetworkManager {
     
     func request(completion: @escaping CompletionHandler) {
         let session = URLSession(configuration: .default)

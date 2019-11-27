@@ -13,3 +13,8 @@ enum Error: Swift.Error {
     case api(error: Swift.Error)
     case incorrectModel
 }
+
+enum Cell {
+    static let collectionCell = "collectionViewCell"
+    static let tableViewIdentifier = "cell"
+}

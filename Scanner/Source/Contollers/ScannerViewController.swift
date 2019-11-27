@@ -15,9 +15,16 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var previewLayer: AVCaptureVideoPreviewLayer!
     var qrCodeFrameView: UIView?
     
+    @IBOutlet var scannerCodeView: UIView?
+    @IBOutlet var infoLabel: UILabel!
+    @IBOutlet var captureCodeButton: UIButton!
+    
+    
+    private var mainViewModel: TableViewModelType?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        mainViewModel = MainViewModel()
         view.backgroundColor = .black
         captureSession = AVCaptureSession()
         initializationDevice()
@@ -59,6 +66,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         captureSession.startRunning()
         
+        view.bringSubviewToFront(infoLabel)
         qrCodeFrameView = UIView()
         
         if let qrCodeFrameView = qrCodeFrameView {
@@ -97,6 +105,9 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         if metadataObjects.isEmpty {
             qrCodeFrameView?.frame = CGRect.zero
+            infoLabel.text = "Code is not detected"
+            infoLabel.textColor = .white
+            infoLabel.font = infoLabel.font.withSize(16)
             return
         }
 
@@ -114,7 +125,16 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     func found(code: String) {
+        infoLabel.text = code
         print(code)
+    }
+    
+    @IBAction func didCaptureCode(_ sender: UIButton) {
+        print("hgfhgvkhbjhb")
+        
+        
+        infoLabel.textColor = .green
+        infoLabel.font = infoLabel.font.withSize(20)
     }
     
     override var prefersStatusBarHidden: Bool {
