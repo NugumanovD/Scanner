@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     
     private var mainViewModel: TableViewModelType?
     var capturedId: Int?
+    var editingVegetable: TableViewCellModelType?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,13 +51,17 @@ extension ViewController: UITableViewDataSource {
         
         return tableViewCell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
 }
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel = mainViewModel else { return }
         let item = viewModel.cellViewModel(forIndexPath: indexPath)
-        
+        self.editingVegetable = item
         self.capturedId = item?.vegetableId
         performSegue(withIdentifier: "detailSegue", sender: nil)
     }
@@ -65,6 +71,7 @@ extension ViewController: UITableViewDelegate {
         if let scannerVC = segue.destination as? ScannerViewController {
             if segue.identifier == "detailSegue" {
                 scannerVC.capturedId = capturedId
+                scannerVC.editingVegetable = editingVegetable
             }
         }
     }

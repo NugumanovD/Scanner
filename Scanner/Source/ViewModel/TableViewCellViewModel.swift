@@ -25,7 +25,7 @@ class TableViewCellViewModel: TableViewCellModelType {
     }
     
     var code: String {
-        return vegetable.code
+        return "Code: \(vegetable.code)"
     }
     
     init(vegetable: Vegetable) {

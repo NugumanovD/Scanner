@@ -22,6 +22,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     @IBOutlet private var captureCodeButton: UIButton!
     
     var capturedId: Int?
+    var editingVegetable: TableViewCellModelType?
     
     private var mainViewModel: TableViewModelType?
     
@@ -104,7 +105,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         }
     }
     
-     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         
         if metadataObjects.isEmpty {
             qrCodeFrameView?.frame = CGRect.zero
@@ -113,7 +114,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             infoLabel.font = infoLabel.font.withSize(16)
             return
         }
-
+        
         if let metadataObject = metadataObjects.first {
             
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
