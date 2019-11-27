@@ -10,13 +10,24 @@ import Foundation
 
 class MainViewModel: NSObject, TableViewModelType {
     
+    let networkManager = NetworkManager()
+    var vegetables = [Vegetable]()
     
+    func loadData(completion: @escaping()-> Void ) {
+        networkManager.request { (test, error) in
+            guard let test = test else { return }
+            
+            test.forEach({ self.vegetables.append(Vegetable(vegetableID: $0.vegetableID,
+                                                            name: $0.name,
+                                                            image: $0.image,
+                                                            code: $0.code)) })
+            completion()
+        }
+    }
     
-    var vegetables: [Vegetable] = [
-        Vegetable(vegetableID: 1, name: "Apple", image: "",code: ""),
-        Vegetable(vegetableID: 2, name: "Pinapple", image: "", code: ""),
-        Vegetable(vegetableID: 3, name: "Cherry", image: "", code: "")
-    ]
+    func appendCode(text: String) {
+        vegetables.append(Vegetable(vegetableID: 10, name: "", image: "", code: text))
+    }
     
     func numberOfRows() -> Int {
         return vegetables.count
@@ -26,18 +37,4 @@ class MainViewModel: NSObject, TableViewModelType {
         let vegetable = vegetables[indexPath.row]
         return TableViewCellViewModel(vegetable: vegetable)
     }
-    
-    
-//     let groceriesModel: MainModel
-//    
-//    init(model: MainModel) {
-//        self.groceriesModel = model
-//    }
-//    
-//    func getGroceries(completion: @escaping( [GroceryElement?]) -> Void) {
-//        groceriesModel.getVegetables { (groceries, error) in
-//            guard let groceriesResult = groceries else { return }
-//            completion(groceriesResult)
-//        }
-//    }
 }

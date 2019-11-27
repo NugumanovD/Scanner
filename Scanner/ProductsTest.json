@@ -1,7 +1,5 @@
-[
-    {
-        "groceryID": 1,
-        "vegetables": [
+
+    [
             {
                 "vegetableID": 1,
                 "name": "Apple",
@@ -176,6 +174,5 @@
                 "image": "ice-cream-1",
                 "code": ""
             }
-        ]
-    }
-]
+    ]
+

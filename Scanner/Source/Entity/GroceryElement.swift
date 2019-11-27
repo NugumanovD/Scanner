@@ -8,11 +8,6 @@
 
 import Foundation
 
-struct GroceryElement: Decodable {
-    let groceryID: Int
-    let vegetables: [Vegetable]
-}
-
 struct Vegetable: Decodable {
     let vegetableID: Int
     let name, image, code: String

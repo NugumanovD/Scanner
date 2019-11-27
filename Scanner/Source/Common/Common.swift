@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias CompletionHandler = ([Vegetable]?, Error?) -> Void
+
 enum Error: Swift.Error {
     case badURL
     case api(error: Swift.Error)

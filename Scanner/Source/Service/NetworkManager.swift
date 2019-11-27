@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias CompletionHandler = ([GroceryElement]?, Error?) -> Void
-
 class NetworkManager {
     
     func request(completion: @escaping CompletionHandler) {
@@ -28,7 +26,7 @@ class NetworkManager {
             }
             
             guard let data = data,
-                let json = try? JSONDecoder().decode([GroceryElement].self, from: data) else {
+                let json = try? JSONDecoder().decode([Vegetable].self, from: data) else {
                     completion(nil, .incorrectModel)
                     return
             }

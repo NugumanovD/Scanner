@@ -14,13 +14,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var mainViewModel: TableViewModelType?
-    
+    var capturedId: Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mainViewModel = MainViewModel()
+        mainViewModel?.loadData(completion: { [weak self] in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        })
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
 }
 
 extension ViewController: UITableViewDataSource {
@@ -44,15 +54,18 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel = mainViewModel else { return }
+        let item = viewModel.cellViewModel(forIndexPath: indexPath)
         
+        self.capturedId = item?.vegetableId
         performSegue(withIdentifier: "detailSegue", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = segue.identifier, let viewModel = mainViewModel else { return }
         
-        if identifier == "detailSegue" {
-//            if ler scannerViewController =
+        if let scannerVC = segue.destination as? ScannerViewController {
+            if segue.identifier == "detailSegue" {
+                scannerVC.capturedId = capturedId
+            }
         }
     }
 }
