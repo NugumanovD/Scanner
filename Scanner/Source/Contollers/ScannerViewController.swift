@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-import RealmSwift
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -17,8 +16,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     private var qrCodeFrameView: UIView?
     private var mainViewController: ViewController?
     private var mainViewModel: TableViewModelType?
-    private var realm = try! Realm()
-    private var items: Results<VegetableElement>!
     var capturedId: Int?
     
     @IBOutlet private var codeLabel: UILabel! {
@@ -39,7 +36,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        items = realm.objects(VegetableElement.self)
         mainViewModel = MainViewModel()
         captureSession = AVCaptureSession()
         initializationDevice()
@@ -84,7 +80,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             captureSession.addOutput(metaDataOutput)
             
             metaDataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metaDataOutput.metadataObjectTypes = [.qr]
+            metaDataOutput.metadataObjectTypes = [.ean8, .ean13, .pdf417, .qr]
         } else {
             failed()
             return
@@ -119,7 +115,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         if metadataObjects.isEmpty {
             qrCodeFrameView?.frame = CGRect.zero
-            infoLabel.text = Scanner.codeIsNotDetected //"Code is not detected"
+            infoLabel.text = Scanner.codeIsNotDetected
             codeLabel.text = Scanner.clearField
             captureCodeButton.isEnabled = false
             infoLabel.textColor = .red
@@ -147,17 +143,12 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     @IBAction func didCaptureCode(_ sender: UIButton) {
-        navigationController?.popViewController(animated: true)
         
-        items.forEach({
-            if $0.vegetableID == capturedId {
-                let realm = try! Realm()
-                let editingItem = $0
-                try! realm.write {
-                    editingItem.code = codeLabel.text ?? Scanner.clearField
-                    realm.add(editingItem)
-                }
-            }
+        guard let capturedId = capturedId,
+              let code = codeLabel.text else { return }
+        
+        mainViewModel?.updateItemCode(idObject: capturedId, code: code, completion: { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
         })
     }
     

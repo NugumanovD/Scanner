@@ -22,29 +22,46 @@ class DataBaseManager {
     }
 
     func allItems() -> [Vegetable] {
+
         return realm.objects(VegetableElement.self).map({ $0.convertToVegetableModel() })
     }
 
-    func addItem(with model: Vegetable, count: Int) {
+    func addItems(with vegetables: [Vegetable], completion: @escaping() -> Void) {
+        
         DispatchQueue.global().async {
             autoreleasepool {
                 do {
-                    let backgroundRealm = try Realm()
-                    let vegetablesList = VegetableElement()
-                    vegetablesList.code = model.code
-                    vegetablesList.name = model.name
-                    vegetablesList.image = model.image
-                    vegetablesList.vegetableID = model.vegetableID
-                    let objects = backgroundRealm.objects(VegetableElement.self).count
-                    if objects < count {
-                        try backgroundRealm.write {
-                            backgroundRealm.add(vegetablesList)
+                    for model in vegetables {
+                        let backgroundRealm = try Realm()
+                        let objects = backgroundRealm.objects(VegetableElement.self)
+                        let vegetablesList = VegetableElement()
+                        vegetablesList.code = model.code
+                        vegetablesList.name = model.name
+                        vegetablesList.image = model.image
+                        vegetablesList.vegetableID = model.vegetableID
+                        if !objects.contains(where: {$0.vegetableID == vegetablesList.vegetableID }) {
+                            try? backgroundRealm.write {
+                                backgroundRealm.add(vegetablesList)
+                            }
                         }
                     }
+                    completion()
                 } catch {
                     print(error.localizedDescription)
                 }
             }
+        }
+    }
+    
+    func updateItemCode(idObject: Int, code: String) {
+        do {
+            let realm = try Realm()
+            let objects = realm.objects(VegetableElement.self).filter("vegetableID == %@", idObject).first
+            try realm.write {
+                objects?.code = code
+            }
+        } catch {
+            print(error.localizedDescription)
         }
     }
 

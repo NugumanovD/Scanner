@@ -20,8 +20,11 @@ class MainViewModel: TableViewModelType {
             }
             guard let result = result else { return }
             
-            result.forEach({self?.localStorage.addItem(with: $0, count: result.count)})
-            completion()
+            DispatchQueue.main.async {
+                self?.localStorage.addItems(with: result, completion: {
+                    completion()
+                })
+            }
         }
     }
     
@@ -36,5 +39,10 @@ class MainViewModel: TableViewModelType {
     
     func allItems() -> [Vegetable] {
         return localStorage.allItems()
+    }
+    
+    func updateItemCode(idObject: Int, code: String, completion: @escaping() -> Void) {
+        localStorage.updateItemCode(idObject: idObject, code: code)
+        completion()
     }
 }
