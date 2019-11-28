@@ -19,7 +19,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     private var mainViewModel: TableViewModelType?
     
     var capturedId: Int?
-    var editingVegetable: TableViewCellModelType?
     
     private var realm = try! Realm() // Access to base
     private var items: Results<VegetableElement>! // Access to model
@@ -34,7 +33,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         items = realm.objects(VegetableElement.self)
         mainViewModel = MainViewModel()
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         captureSession = AVCaptureSession()
         initializationDevice()
     }
@@ -153,10 +152,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 }
             }
         })
-    }
-    
-    override var prefersStatusBarHidden: Bool {
-        return true
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

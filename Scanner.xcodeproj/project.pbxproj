@@ -28,6 +28,7 @@
 		7B928EEA238DE3E5008CF73D /* ScannerViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B928EE9238DE3E5008CF73D /* ScannerViewModelType.swift */; };
 		7B928EEC238DE446008CF73D /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B928EEB238DE446008CF73D /* ScannerViewModel.swift */; };
 		7BB3D566238EFFDC00D8A429 /* VegetableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3D565238EFFDC00D8A429 /* VegetableModel.swift */; };
+		7BB3D569238FF2AB00D8A429 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB3D568238FF2AB00D8A429 /* DataBaseManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		7B928EE9238DE3E5008CF73D /* ScannerViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModelType.swift; sourceTree = "<group>"; };
 		7B928EEB238DE446008CF73D /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewModel.swift; sourceTree = "<group>"; };
 		7BB3D565238EFFDC00D8A429 /* VegetableModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VegetableModel.swift; sourceTree = "<group>"; };
+		7BB3D568238FF2AB00D8A429 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		7E4CD24B81C7801D64FC965D /* Pods_Scanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Scanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				7B8EA3A2238C7948004499F1 /* NetworkManager.swift */,
+				7BB3D568238FF2AB00D8A429 /* DataBaseManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				7B8EA3A3238C7948004499F1 /* NetworkManager.swift in Sources */,
 				7B8EA389238C582B004499F1 /* ViewController.swift in Sources */,
 				7B928EEA238DE3E5008CF73D /* ScannerViewModelType.swift in Sources */,
+				7BB3D569238FF2AB00D8A429 /* DataBaseManager.swift in Sources */,
 				7B8EA385238C582B004499F1 /* AppDelegate.swift in Sources */,
 				7B8EA387238C582B004499F1 /* SceneDelegate.swift in Sources */,
 				7B928EDE238DC8D2008CF73D /* VegatebleCell.swift in Sources */,

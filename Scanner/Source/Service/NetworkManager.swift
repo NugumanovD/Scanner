@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RealmSwift
 
 class NetworkManager {
     
@@ -37,53 +36,4 @@ class NetworkManager {
     }
 }
 
-class DataBaseManager {
 
-    private var realm: Realm!
-    init() {
-//        migrationRealmDataBase()
-        do {
-            try self.realm = Realm()
-        } catch {
-            self.realm = nil
-        }
-    }
-
-    func allItems() -> [Vegetable] {
-        
-        return realm.objects(VegetableElement.self).map({ $0.convertToVegetableModel() })
-    }
-
-    func addItem(with model: Vegetable) {
-        DispatchQueue.global().async {
-            autoreleasepool {
-                let vegetablesList = VegetableElement()
-                vegetablesList.code = model.code
-                vegetablesList.name = model.name
-                vegetablesList.image = model.image
-                vegetablesList.vegetableID = model.vegetableID
-                
-                do {
-                    let backgroundRealm = try Realm()
-                    if self.realm.isEmpty {
-                        try backgroundRealm.write {
-                            backgroundRealm.add(vegetablesList)
-                        }
-                    }
-                } catch {
-                    print(error.localizedDescription)
-                }
-            }
-        }
-    }
-
-    func migrationRealmDataBase() {
-        let config = Realm.Configuration(
-            schemaVersion: 2,
-            migrationBlock: { _, oldSchemaVersion in
-                if oldSchemaVersion < 2 {
-                }
-        })
-        Realm.Configuration.defaultConfiguration = config
-    }
-}

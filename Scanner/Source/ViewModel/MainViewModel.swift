@@ -7,37 +7,29 @@
 //
 
 import Foundation
-import RealmSwift
 
-class MainViewModel: NSObject, TableViewModelType {
+class MainViewModel: TableViewModelType {
     
     let networkManager = NetworkManager()
     let localStorage = DataBaseManager()
-    var vegetables = [Vegetable]()
     
-    
-    func loadData(completion: @escaping()-> Void) {
-        networkManager.request { (result, error) in
+    func loadData(completion: @escaping ()-> Void) {
+        networkManager.request { [weak self] (result, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
             guard let result = result else { return }
             
-//            result.forEach({ self.vegetables.append(Vegetable(vegetableID: $0.vegetableID,
-//                                                            name: $0.name,
-//                                                            image: $0.image,
-//                                                            code: $0.code))
-//            })
-            
-            result.forEach({self.localStorage.addItem(with: $0)})
+            result.forEach({self?.localStorage.addItem(with: $0, count: result.count)})
             completion()
         }
     }
     
     func numberOfRows() -> Int {
         return localStorage.allItems().count
-//        return vegetables.count
     }
     
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellModelType? {
-//        let vegetable = vegetables[indexPath.row]
         let vegetable = localStorage.allItems()[indexPath.row]
         return TableViewCellViewModel(vegetable: vegetable)
     }
