@@ -21,12 +21,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     private var items: Results<VegetableElement>!
     var capturedId: Int?
     
-    @IBOutlet private var scannerCodeView: UIView?
     @IBOutlet private var codeLabel: UILabel! {
         didSet {
             codeLabel.textColor = .cyan
             codeLabel.font = codeLabel.font.withSize(20)
-            
         }
     }
     
@@ -34,7 +32,6 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         didSet {
             infoLabel.textColor = .cyan
             infoLabel.font = infoLabel.font.withSize(20)
-            infoLabel.text = "Press this to save"
         }
     }
     
@@ -97,20 +94,18 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         previewLayer.frame = view.layer.bounds
         previewLayer.videoGravity = .resizeAspectFill
         view.layer.addSublayer(previewLayer)
-        
-        captureSession.startRunning()
-        
         view.bringSubviewToFront(codeLabel)
-        view.bringSubviewToFront(infoLabel)
+        captureSession.startRunning()
         qrCodeFrameView = UIView()
         
         if let qrCodeFrameView = qrCodeFrameView {
             qrCodeFrameView.layer.borderColor = UIColor.red.cgColor
             qrCodeFrameView.layer.borderWidth = 3
             view.addSubview(qrCodeFrameView)
+            
             view.bringSubviewToFront(qrCodeFrameView)
         }
-        
+        view.bringSubviewToFront(infoLabel)
     }
     
     private func failed() {
@@ -124,10 +119,10 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         if metadataObjects.isEmpty {
             qrCodeFrameView?.frame = CGRect.zero
-            infoLabel.text = "Code is not detected"
+            infoLabel.text = Scanner.codeIsNotDetected //"Code is not detected"
+            codeLabel.text = Scanner.clearField
             captureCodeButton.isEnabled = false
             infoLabel.textColor = .red
-            infoLabel.font = infoLabel.font.withSize(16)
             return
         }
         
@@ -140,16 +135,15 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             let stringValue = readableObject.stringValue
             
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate.leadingZeroBitCount))
-            found(code: stringValue ?? "")
+            found(code: stringValue ?? Scanner.clearField)
         }
     }
     
     private func found(code: String) {
         codeLabel.text = code
-        infoLabel.text = "Press this to save"
+        infoLabel.text = Scanner.buttonIsActive
         captureCodeButton.isEnabled = true
         infoLabel.textColor = .cyan
-        print(code)
     }
     
     @IBAction func didCaptureCode(_ sender: UIButton) {
@@ -160,7 +154,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 let realm = try! Realm()
                 let editingItem = $0
                 try! realm.write {
-                    editingItem.code = codeLabel.text ?? ""
+                    editingItem.code = codeLabel.text ?? Scanner.clearField
                     realm.add(editingItem)
                 }
             }

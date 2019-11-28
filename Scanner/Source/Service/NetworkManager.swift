@@ -13,7 +13,7 @@ class NetworkManager {
     func request(completion: @escaping CompletionHandler) {
         let session = URLSession(configuration: .default)
         
-        guard let path = Bundle.main.path(forResource: "ProductsTest", ofType: "json") else {
+        guard let path = Bundle.main.path(forResource: Path.mainPath, ofType: Path.typeJSON) else {
             completion(nil, .badURL)
             return
             

@@ -98,27 +98,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ym-uk-QZh">
-                                <rect key="frame" x="0.0" y="130" width="414" height="692"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8W-nn-ZTA">
-                                        <rect key="frame" x="8" y="644" width="398" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="lBO-Se-cTa"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="k8W-nn-ZTA" secondAttribute="trailing" constant="8" id="F2h-Cj-U2s"/>
-                                    <constraint firstItem="k8W-nn-ZTA" firstAttribute="leading" secondItem="1Ym-uk-QZh" secondAttribute="leading" constant="8" id="U0r-Ik-5sx"/>
-                                    <constraint firstAttribute="bottom" secondItem="k8W-nn-ZTA" secondAttribute="bottom" constant="8" id="U9s-Zh-lkx"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InfoLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAN-Vz-zpI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAN-Vz-zpI">
                                 <rect key="frame" x="0.0" y="822" width="414" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="wYY-qE-PlI"/>
@@ -128,34 +108,40 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YGG-O4-iEU">
-                                <rect key="frame" x="0.0" y="822" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="832" width="414" height="30"/>
                                 <connections>
                                     <action selector="didCaptureCode:" destination="W8D-Ur-FID" eventType="touchUpInside" id="OoD-Qz-3ix"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7AA-x4-rEz">
+                                <rect key="frame" x="20" y="792" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="YW8-Zz-Dg1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="HAN-Vz-zpI" firstAttribute="trailing" secondItem="pcg-Wd-Ngc" secondAttribute="trailing" id="C9P-Nc-Bnk"/>
-                            <constraint firstItem="HAN-Vz-zpI" firstAttribute="top" secondItem="1Ym-uk-QZh" secondAttribute="bottom" id="Eb8-M6-TNc"/>
                             <constraint firstItem="pcg-Wd-Ngc" firstAttribute="bottom" secondItem="HAN-Vz-zpI" secondAttribute="bottom" id="GJl-i7-Vy7"/>
-                            <constraint firstItem="1Ym-uk-QZh" firstAttribute="trailing" secondItem="pcg-Wd-Ngc" secondAttribute="trailing" id="HJp-ke-TDd"/>
-                            <constraint firstItem="1Ym-uk-QZh" firstAttribute="leading" secondItem="pcg-Wd-Ngc" secondAttribute="leading" id="LWZ-rx-F7U"/>
                             <constraint firstItem="HAN-Vz-zpI" firstAttribute="leading" secondItem="pcg-Wd-Ngc" secondAttribute="leading" id="OlW-s3-PoK"/>
                             <constraint firstItem="YGG-O4-iEU" firstAttribute="leading" secondItem="pcg-Wd-Ngc" secondAttribute="leading" id="P7m-ap-Q8P"/>
-                            <constraint firstItem="1Ym-uk-QZh" firstAttribute="top" secondItem="pcg-Wd-Ngc" secondAttribute="top" constant="42" id="RwM-Ho-8dJ"/>
+                            <constraint firstItem="pcg-Wd-Ngc" firstAttribute="trailing" secondItem="7AA-x4-rEz" secondAttribute="trailing" constant="20" id="nFc-wF-DY8"/>
                             <constraint firstItem="YGG-O4-iEU" firstAttribute="trailing" secondItem="pcg-Wd-Ngc" secondAttribute="trailing" id="nu4-97-f9A"/>
-                            <constraint firstItem="YGG-O4-iEU" firstAttribute="top" secondItem="1Ym-uk-QZh" secondAttribute="bottom" id="rPG-YC-3vn"/>
+                            <constraint firstItem="YGG-O4-iEU" firstAttribute="top" secondItem="7AA-x4-rEz" secondAttribute="bottom" id="vUm-bx-Ay8"/>
                             <constraint firstItem="YGG-O4-iEU" firstAttribute="bottom" secondItem="pcg-Wd-Ngc" secondAttribute="bottom" id="wHi-Ld-Tmy"/>
+                            <constraint firstItem="7AA-x4-rEz" firstAttribute="leading" secondItem="pcg-Wd-Ngc" secondAttribute="leading" constant="20" id="xNG-qO-Ovy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pcg-Wd-Ngc"/>
                     </view>
                     <navigationItem key="navigationItem" id="Hxb-YS-eM7"/>
                     <connections>
                         <outlet property="captureCodeButton" destination="YGG-O4-iEU" id="iR4-lF-PvV"/>
-                        <outlet property="codeLabel" destination="k8W-nn-ZTA" id="11T-m5-DDA"/>
+                        <outlet property="codeLabel" destination="7AA-x4-rEz" id="vZC-dg-SA9"/>
                         <outlet property="infoLabel" destination="HAN-Vz-zpI" id="bfW-Kw-67v"/>
-                        <outlet property="scannerCodeView" destination="1Ym-uk-QZh" id="xzM-YD-i6c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6W5-iA-cUy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

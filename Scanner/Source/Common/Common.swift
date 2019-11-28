@@ -20,3 +20,14 @@ enum Cell {
     static let collectionCell = "collectionViewCell"
     static let tableViewIdentifier = "cell"
 }
+
+enum Scanner {
+    static let buttonIsActive = "Press this to save"
+    static let codeIsNotDetected = "Code is not detected"
+    static let clearField = ""
+}
+
+enum Path {
+    static let mainPath = "ProductsTest"
+    static let typeJSON = "json"
+}
