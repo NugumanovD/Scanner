@@ -8,26 +8,31 @@
 
 import UIKit
 import AVFoundation
+import RealmSwift
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     private var captureSession: AVCaptureSession!
     private var previewLayer: AVCaptureVideoPreviewLayer!
     private var qrCodeFrameView: UIView?
-    
     private var mainViewController: ViewController?
+    private var mainViewModel: TableViewModelType?
+    
+    var capturedId: Int?
+    var editingVegetable: TableViewCellModelType?
+    
+    private var realm = try! Realm() // Access to base
+    private var items: Results<VegetableElement>! // Access to model
+    
     
     @IBOutlet private var scannerCodeView: UIView?
     @IBOutlet private var infoLabel: UILabel!
     @IBOutlet private var captureCodeButton: UIButton!
     
-    var capturedId: Int?
-    var editingVegetable: TableViewCellModelType?
-    
-    private var mainViewModel: TableViewModelType?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        items = realm.objects(VegetableElement.self)
         mainViewModel = MainViewModel()
         view.backgroundColor = .black
         captureSession = AVCaptureSession()
@@ -136,9 +141,18 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     @IBAction func didCaptureCode(_ sender: UIButton) {
         infoLabel.textColor = .green
         infoLabel.font = infoLabel.font.withSize(20)
-        mainViewModel?.appendCode(text: infoLabel.text ?? "")
         navigationController?.popViewController(animated: true)
         
+        items.forEach({
+            if $0.vegetableID == capturedId {
+                let realm = try! Realm()
+                let editingItem = $0
+                try! realm.write {
+                    editingItem.code = infoLabel.text ?? ""
+                    realm.add(editingItem)
+                }
+            }
+        })
     }
     
     override var prefersStatusBarHidden: Bool {

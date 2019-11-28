@@ -12,6 +12,6 @@ protocol TableViewModelType {
     func numberOfRows() -> Int
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellModelType?
     func loadData(completion: @escaping()-> Void)
-    func appendCode(text: String)
+    func allItems() -> [Vegetable]
 }
 

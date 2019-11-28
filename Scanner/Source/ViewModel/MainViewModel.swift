@@ -7,34 +7,42 @@
 //
 
 import Foundation
+import RealmSwift
 
 class MainViewModel: NSObject, TableViewModelType {
     
     let networkManager = NetworkManager()
+    let localStorage = DataBaseManager()
     var vegetables = [Vegetable]()
     
-    func loadData(completion: @escaping()-> Void ) {
-        networkManager.request { (test, error) in
-            guard let test = test else { return }
+    
+    func loadData(completion: @escaping()-> Void) {
+        networkManager.request { (result, error) in
+            guard let result = result else { return }
             
-            test.forEach({ self.vegetables.append(Vegetable(vegetableID: $0.vegetableID,
-                                                            name: $0.name,
-                                                            image: $0.image,
-                                                            code: $0.code)) })
+//            result.forEach({ self.vegetables.append(Vegetable(vegetableID: $0.vegetableID,
+//                                                            name: $0.name,
+//                                                            image: $0.image,
+//                                                            code: $0.code))
+//            })
+            
+            result.forEach({self.localStorage.addItem(with: $0)})
             completion()
         }
     }
     
-    func appendCode(text: String) {
-        vegetables.append(Vegetable(vegetableID: 10, name: "", image: "", code: text))
-    }
-    
     func numberOfRows() -> Int {
-        return vegetables.count
+        return localStorage.allItems().count
+//        return vegetables.count
     }
     
     func cellViewModel(forIndexPath indexPath: IndexPath) -> TableViewCellModelType? {
-        let vegetable = vegetables[indexPath.row]
+//        let vegetable = vegetables[indexPath.row]
+        let vegetable = localStorage.allItems()[indexPath.row]
         return TableViewCellViewModel(vegetable: vegetable)
+    }
+    
+    func allItems() -> [Vegetable] {
+        return localStorage.allItems()
     }
 }
