@@ -17,25 +17,51 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     private var qrCodeFrameView: UIView?
     private var mainViewController: ViewController?
     private var mainViewModel: TableViewModelType?
-    
+    private var realm = try! Realm()
+    private var items: Results<VegetableElement>!
     var capturedId: Int?
     
-    private var realm = try! Realm() // Access to base
-    private var items: Results<VegetableElement>! // Access to model
-    
-    
     @IBOutlet private var scannerCodeView: UIView?
-    @IBOutlet private var infoLabel: UILabel!
+    @IBOutlet private var codeLabel: UILabel! {
+        didSet {
+            codeLabel.textColor = .cyan
+            codeLabel.font = codeLabel.font.withSize(20)
+            
+        }
+    }
+    
+    @IBOutlet private var infoLabel: UILabel! {
+        didSet {
+            infoLabel.textColor = .cyan
+            infoLabel.font = infoLabel.font.withSize(20)
+            infoLabel.text = "Press this to save"
+        }
+    }
+    
     @IBOutlet private var captureCodeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         items = realm.objects(VegetableElement.self)
         mainViewModel = MainViewModel()
-        view.backgroundColor = .clear
         captureSession = AVCaptureSession()
         initializationDevice()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if captureSession?.isRunning == false {
+            captureSession.startRunning()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if captureSession?.isRunning == true {
+            captureSession.stopRunning()
+        }
     }
     
     private func initializationDevice() {
@@ -74,6 +100,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         captureSession.startRunning()
         
+        view.bringSubviewToFront(codeLabel)
         view.bringSubviewToFront(infoLabel)
         qrCodeFrameView = UIView()
         
@@ -93,28 +120,13 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         captureSession = nil
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if (captureSession?.isRunning == false) {
-            captureSession.startRunning()
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        if (captureSession?.isRunning == true) {
-            captureSession.stopRunning()
-        }
-    }
-    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         
         if metadataObjects.isEmpty {
             qrCodeFrameView?.frame = CGRect.zero
             infoLabel.text = "Code is not detected"
-            infoLabel.textColor = .white
+            captureCodeButton.isEnabled = false
+            infoLabel.textColor = .red
             infoLabel.font = infoLabel.font.withSize(16)
             return
         }
@@ -133,13 +145,14 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     private func found(code: String) {
-        infoLabel.text = code
+        codeLabel.text = code
+        infoLabel.text = "Press this to save"
+        captureCodeButton.isEnabled = true
+        infoLabel.textColor = .cyan
         print(code)
     }
     
     @IBAction func didCaptureCode(_ sender: UIButton) {
-        infoLabel.textColor = .green
-        infoLabel.font = infoLabel.font.withSize(20)
         navigationController?.popViewController(animated: true)
         
         items.forEach({
@@ -147,7 +160,7 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
                 let realm = try! Realm()
                 let editingItem = $0
                 try! realm.write {
-                    editingItem.code = infoLabel.text ?? ""
+                    editingItem.code = codeLabel.text ?? ""
                     realm.add(editingItem)
                 }
             }

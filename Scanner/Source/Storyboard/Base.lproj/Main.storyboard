@@ -100,7 +100,23 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ym-uk-QZh">
                                 <rect key="frame" x="0.0" y="130" width="414" height="692"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k8W-nn-ZTA">
+                                        <rect key="frame" x="8" y="644" width="398" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="lBO-Se-cTa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="k8W-nn-ZTA" secondAttribute="trailing" constant="8" id="F2h-Cj-U2s"/>
+                                    <constraint firstItem="k8W-nn-ZTA" firstAttribute="leading" secondItem="1Ym-uk-QZh" secondAttribute="leading" constant="8" id="U0r-Ik-5sx"/>
+                                    <constraint firstAttribute="bottom" secondItem="k8W-nn-ZTA" secondAttribute="bottom" constant="8" id="U9s-Zh-lkx"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="InfoLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HAN-Vz-zpI">
                                 <rect key="frame" x="0.0" y="822" width="414" height="40"/>
@@ -137,6 +153,7 @@
                     <navigationItem key="navigationItem" id="Hxb-YS-eM7"/>
                     <connections>
                         <outlet property="captureCodeButton" destination="YGG-O4-iEU" id="iR4-lF-PvV"/>
+                        <outlet property="codeLabel" destination="k8W-nn-ZTA" id="11T-m5-DDA"/>
                         <outlet property="infoLabel" destination="HAN-Vz-zpI" id="bfW-Kw-67v"/>
                         <outlet property="scannerCodeView" destination="1Ym-uk-QZh" id="xzM-YD-i6c"/>
                     </connections>
