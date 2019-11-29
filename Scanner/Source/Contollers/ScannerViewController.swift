@@ -11,12 +11,19 @@ import AVFoundation
 
 class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
+    // MARK: - Private Properties
+    
     private var captureSession: AVCaptureSession!
     private var previewLayer: AVCaptureVideoPreviewLayer!
     private var qrCodeFrameView: UIView?
     private var mainViewController: ViewController?
     private var mainViewModel: TableViewModelType?
+    
+    // MARK: - Public Properties
+    
     var capturedId: Int?
+    
+    // MARK: - Private Outlets
     
     @IBOutlet private var codeLabel: UILabel! {
         didSet {
@@ -33,6 +40,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     @IBOutlet private var captureCodeButton: UIButton!
+    
+    // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +65,8 @@ class ScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             captureSession.stopRunning()
         }
     }
+    
+    // MARK: - Private Function
     
     private func initializationDevice() {
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }

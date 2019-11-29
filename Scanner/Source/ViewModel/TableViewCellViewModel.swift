@@ -10,7 +10,11 @@ import Foundation
 
 class TableViewCellViewModel: TableViewCellModelType {
     
+    // MARK: - Private Properties
+    
     private var vegetable: Vegetable
+    
+    // MARK: - Public Properties
     
     var vegetableId: Int {
         return vegetable.vegetableID
@@ -27,6 +31,8 @@ class TableViewCellViewModel: TableViewCellModelType {
     var code: String {
         return "Code: \(vegetable.code)"
     }
+    
+    // MARK: - Init
     
     init(vegetable: Vegetable) {
         self.vegetable = vegetable

@@ -10,6 +10,8 @@ import Foundation
 
 class NetworkManager {
     
+    // MARK: - Public Function
+    
     func request(completion: @escaping CompletionHandler) {
         let session = URLSession(configuration: .default)
         

@@ -10,6 +10,8 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     
+    // MARK: - Private Properties
+    
     @IBOutlet private var imageProduct: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
     @IBOutlet private var codeLabel: UILabel!
@@ -22,18 +24,18 @@ class TableViewCell: UITableViewCell {
             codeLabel.text = viewModel.code
         }
     }
-    
-    func configureImage(to image: String) {
-        imageProduct.image = UIImage(named: image)
-        imageProduct.contentMode = .scaleAspectFit
-    }
-    
-    func configureName(to name: String) {
-        nameLabel.text = name.capitalized
-    }
-    
-    func configureCode(to code: String) {
-        codeLabel.text = code
-    }
+//
+//    func configureImage(to image: String) {
+//        imageProduct.image = UIImage(named: image)
+//        imageProduct.contentMode = .scaleAspectFit
+//    }
+//
+//    func configureName(to name: String) {
+//        nameLabel.text = name.capitalized
+//    }
+//
+//    func configureCode(to code: String) {
+//        codeLabel.text = code
+//    }
     
 }

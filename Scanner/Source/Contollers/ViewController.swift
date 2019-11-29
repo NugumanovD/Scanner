@@ -11,10 +11,17 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var tableView: UITableView!
+    // MARK: - Private Outlet 
+    
+    @IBOutlet private var tableView: UITableView!
+    
+    var capturedId: Int?
+    
+    // MARK: - Public Properties
     
     private var mainViewModel: TableViewModelType?
-    var capturedId: Int?
+    
+    // MARK: - Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +42,9 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDataSource {
+    
+    // MARK: - Public Function
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainViewModel?.numberOfRows() ?? 0
     }
@@ -57,6 +67,9 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController: UITableViewDelegate {
+    
+    // MARK: - Public Function
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel = mainViewModel else { return }
         let item = viewModel.cellViewModel(forIndexPath: indexPath)

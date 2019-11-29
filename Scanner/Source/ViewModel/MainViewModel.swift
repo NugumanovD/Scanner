@@ -10,8 +10,12 @@ import Foundation
 
 class MainViewModel: TableViewModelType {
     
+    // MARK: - Public Properties
+    
     let networkManager = NetworkManager()
     let localStorage = DataBaseManager()
+    
+    // MARK: - Public Function
     
     func loadData(completion: @escaping ()-> Void) {
         networkManager.request { [weak self] (result, error) in

@@ -9,6 +9,7 @@
 import Foundation
 
 struct Vegetable: Decodable {
+    
     let vegetableID: Int
     let name, image, code: String
     

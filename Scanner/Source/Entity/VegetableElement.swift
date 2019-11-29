@@ -17,6 +17,9 @@ class VegetableElement: Object {
 }
 
 extension VegetableElement {
+    
+    // MARK: - Public Function
+    
     func convertToVegetableModel() -> Vegetable {
         return Vegetable(vegetableID: vegetableID, name: name, image: image, code: code)
     }

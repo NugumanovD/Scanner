@@ -9,8 +9,12 @@
 import RealmSwift
 
 class DataBaseManager {
+    
+    // MARK: - Private Properties
 
     private var realm: Realm!
+    
+    // MARK: - Init
     
     init() {
         migrationRealmDataBase()
@@ -20,6 +24,8 @@ class DataBaseManager {
             self.realm = nil
         }
     }
+    
+    // MARK: - Public Function
 
     func allItems() -> [Vegetable] {
 
